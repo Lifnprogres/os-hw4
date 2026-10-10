@@ -1,0 +1,1 @@
+B-g prediction recorded before the modified run: add RR q=20. A large quantum should make round robin resemble FCFS because most bursts finish within 20 units. Short jobs should suffer more normalized turnaround than with q=1; the longest aggregate wait for long jobs may fall because they are interrupted less often.
