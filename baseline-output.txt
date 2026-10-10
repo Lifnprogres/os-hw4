@@ -1,0 +1,36 @@
+Experiment 1: page faults for 3,000 references to 40 pages
+  reference string with locality
+    frames      1     2     3     4     5     6     7     8     9    10
+    OPT      2426  1440   910   615   448   352   307   278   257   238
+    FIFO     2426  1918  1410  1078   851   700   602   529   480   440
+    LRU      2426  1889  1370   965   677   504   406   370   349   336
+    CLOCK    2426  1918  1420  1048   770   604   494   432   397   362
+  reference string uniform random
+    frames      1     2     3     4     5     6     7     8     9    10
+    OPT      2940  2554  2296  2104  1938  1793  1669  1556  1454  1359
+    FIFO     2940  2882  2795  2723  2651  2575  2512  2430  2355  2286
+    LRU      2940  2884  2798  2720  2651  2571  2513  2432  2350  2268
+    CLOCK    2940  2882  2796  2722  2651  2571  2510  2431  2362  2285
+
+Experiment 2: Belady's anomaly in 20,000 random strings (30 references, 6 pages)
+  FIFO   more faults with more frames in  39 of 20,000 strings
+         first example: 1 5 2 2 2 2 1 1 0 4 4 1 5 4 3 2 1 2 3 5 4 3 2 0 4 0 4 0 4 3
+         faults with 1-6 frames: [25, 20, 17, 11, 12, 6]
+  OPT    more faults with more frames in   0 of 20,000 strings
+  LRU    more faults with more frames in   0 of 20,000 strings
+  CLOCK  more faults with more frames in  90 of 20,000 strings
+
+Experiment 3: five processes (name arrival service): A 0 5  B 1 7  C 3 2  D 4 4  E 6 1
+  FCFS    finish  A:  5  B: 12  C: 14  D: 18  E: 19   mean Tr 10.80   mean Tr/Ts 4.91
+  SPN     finish  A:  5  B: 19  C:  7  D: 12  E:  8   mean Tr  7.40   mean Tr/Ts 1.91
+  RR q=1  finish  A: 14  B: 19  C:  9  D: 17  E: 10   mean Tr 11.00   mean Tr/Ts 3.12
+  RR q=4  finish  A: 15  B: 19  C: 10  D: 14  E: 16   mean Tr 12.00   mean Tr/Ts 4.31
+  HRRN    finish  A:  5  B: 15  C:  7  D: 19  E:  8   mean Tr  8.00   mean Tr/Ts 2.15
+
+Experiment 4: 600 random processes (mean service 5.11, processor busy about 90% of the time)
+  policy    mean Tr/Ts   shortest third   longest third   worst Tr/Ts   longest wait
+  FCFS          14.24            28.75            3.94        104.00            108
+  SPN            3.47             4.66            3.06         25.00            340
+  RR q=1         5.87             5.84            5.89         15.00            243
+  RR q=4         8.83            15.00            5.39         43.00            185
+  HRRN           5.52             7.87            3.86         30.00            136
